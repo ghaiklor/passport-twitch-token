@@ -1,6 +1,13 @@
 # passport-twitch-token
 
-![Build Status](https://img.shields.io/travis/ghaiklor/passport-twitch-token.svg) ![Coverage](https://img.shields.io/coveralls/ghaiklor/passport-twitch-token.svg) ![Downloads](https://img.shields.io/npm/dm/passport-twitch-token.svg) ![npm version](https://img.shields.io/npm/v/passport-twitch-token.svg) ![dependencies](https://img.shields.io/david/ghaiklor/passport-twitch-token.svg) ![dev dependencies](https://img.shields.io/david/dev/ghaiklor/passport-twitch-token.svg) ![License](https://img.shields.io/npm/l/passport-twitch-token.svg)
+![Build Status](https://img.shields.io/travis/ghaiklor/passport-twitch-token.svg)
+![Coverage](https://img.shields.io/coveralls/ghaiklor/passport-twitch-token.svg)
+![Downloads](https://img.shields.io/npm/dm/passport-twitch-token.svg)
+![Downloads](https://img.shields.io/npm/dt/passport-twitch-token.svg)
+![npm version](https://img.shields.io/npm/v/passport-twitch-token.svg)
+![dependencies](https://img.shields.io/david/ghaiklor/passport-twitch-token.svg)
+![dev dependencies](https://img.shields.io/david/dev/ghaiklor/passport-twitch-token.svg)
+![License](https://img.shields.io/npm/l/passport-twitch-token.svg)
 
 [Passport](http://passportjs.org/) strategy for authenticating with Twitch access tokens using the OAuth 2.0 API.
 
@@ -57,7 +64,11 @@ module.exports = {
 };
 ```
 
-The POST request to this route should include a JSON object with the keys `access_token` and optionally, `refresh_token` set to the credentials you receive from Twitch.
+The request to this route should include a GET or POST data with the keys `access_token` and optionally, `refresh_token` set to the credentials you receive from Twitch.
+
+```
+GET /auth/twitch?access_token=<TOKEN>
+```
 
 ## Issues
 

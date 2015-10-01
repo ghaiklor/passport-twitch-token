@@ -1,4 +1,4 @@
-{
+export default JSON.stringify({
   "name": "ghaiklor",
   "created_at": "2015-04-03T17:49:19Z",
   "updated_at": "2015-04-15T17:19:57Z",
@@ -10,4 +10,4 @@
   "display_name": "Obrezkov Eugene",
   "email": "ghaiklor@gmail.com",
   "partnered": true
-}
+});
