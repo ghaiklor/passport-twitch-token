@@ -182,8 +182,7 @@ describe('TwitchTokenStrategy:userProfile', () => {
     }, 'not a JSON', null));
 
     strategy.userProfile('accessToken', (error, profile) => {
-      assert.equal(error.message, 'MESSAGE');
-      assert.equal(error.oauthCode, 'CODE');
+      assert.equal(error.message, 'Failed to fetch user profile');
       assert.equal(typeof profile, 'undefined');
       done();
     });
