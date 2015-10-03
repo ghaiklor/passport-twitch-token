@@ -28,6 +28,8 @@ The Twitch authentication strategy authenticates users using a Twitch account an
 The strategy requires a `verify` callback, which accepts these credentials and calls `next` providing a user, as well as `options` specifying a app ID and app secret.
 
 ```javascript
+var TwitchTokenStrategy = require('passport-twitch-token');
+
 passport.use(new TwitchTokenStrategy({
     clientID: TWITCH_CLIENT_ID,
     clientSecret: TWITCH_CLIENT_SECRET,

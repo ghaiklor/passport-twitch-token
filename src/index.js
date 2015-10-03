@@ -12,21 +12,17 @@ import { OAuth2Strategy, InternalOAuthError } from 'passport-oauth';
  * - clientSecret      Secret used to establish ownership of the consumer key
  * - passReqToCallback If need, pass req to verify callback
  *
- * Example:
- *     passport.use(new TwitchTokenStrategy({
- *           clientID: '123-456-789',
- *           clientSecret: 'shhh-its-a-secret',
- *           passReqToCallback: true
- *       }, function(req, accessToken, refreshToken, profile, next) {
- *              User.findOrCreate(..., function (error, user) {
- *                  next(error, user);
- *              });
- *          }
- *       ));
- *
  * @param {Object} _options
  * @param {Function} _verify
- * @constructor
+ * @example
+ * passport.use(new TwitchTokenStrategy({
+ *   clientID: '123456789',
+ *   clientSecret: 'shhh-its-a-secret'
+ * }), function(req, accessToken, refreshToken, profile, next) {
+ *   User.findOrCreate({twitchId: profile.id}, function(error, user) {
+ *     next(error, user);
+ *   })
+ * })
  */
 export default class TwitchTokenStrategy extends OAuth2Strategy {
   constructor(_options, _verify) {
@@ -43,6 +39,7 @@ export default class TwitchTokenStrategy extends OAuth2Strategy {
     this._refreshTokenField = options.refreshTokenField || 'refresh_token';
     this._profileURL = options.profileURL || 'https://api.twitch.tv/kraken/user';
     this._passReqToCallback = options.passReqToCallback;
+
     this._oauth2.setAuthMethod('OAuth');
     this._oauth2.useAuthorizationHeaderforGET(true);
   }
@@ -118,4 +115,4 @@ export default class TwitchTokenStrategy extends OAuth2Strategy {
       }
     });
   }
-}
+};
