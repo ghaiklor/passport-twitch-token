@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/ghaiklor/passport-twitch-token",
   "devDependencies": {
-    "babel": "5.8.29",
+    "babel": "5.8.34",
     "chai": "3.4.1",
     "chai-passport-strategy": "0.2.0",
     "coveralls": "2.11.4",
