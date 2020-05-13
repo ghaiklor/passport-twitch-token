@@ -40,8 +40,9 @@ export default class TwitchTokenStrategy extends OAuth2Strategy {
     this._profileURL = options.profileURL || 'https://api.twitch.tv/kraken/user';
     this._passReqToCallback = options.passReqToCallback;
 
-    this._oauth2.setAuthMethod('OAuth');
+    this._oauth2.setAuthMethod('Bearer');
     this._oauth2.useAuthorizationHeaderforGET(true);
+    this._oauth2._customHeaders = {'Client-ID': this._oauth2._clientId}
   }
 
   /**
