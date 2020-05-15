@@ -8,11 +8,6 @@
 ![npm version](https://img.shields.io/npm/v/passport-twitch-token.svg)
 ![License](https://img.shields.io/npm/l/passport-twitch-token.svg)
 
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-![dependencies](https://img.shields.io/david/ghaiklor/passport-twitch-token.svg)
-![dev dependencies](https://img.shields.io/david/dev/ghaiklor/passport-twitch-token.svg)
-
 [Passport](http://passportjs.org/) strategy for authenticating with Twitch access tokens using the OAuth 2.0 API.
 
 This module lets you authenticate using Twitch in your Node.js applications.
@@ -72,7 +67,7 @@ module.exports = {
 
 The request to this route should include a GET or POST data with the keys `access_token` and optionally, `refresh_token` set to the credentials you receive from Twitch.
 
-```
+```bash
 GET /auth/twitch?access_token=<TOKEN>
 ```
 
@@ -83,24 +78,4 @@ Once you refresh access token with new permissions, try to send this access toke
 
 ## License
 
-The MIT License (MIT)
-
-Copyright (c) 2015 Eugene Obrezkov
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+[The MIT License (MIT)](./LICENSE)

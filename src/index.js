@@ -1,4 +1,4 @@
-import { OAuth2Strategy, InternalOAuthError } from 'passport-oauth';
+const { OAuth2Strategy, InternalOAuthError } = require('passport-oauth');
 
 /**
  * `Strategy` constructor.
@@ -17,17 +17,17 @@ import { OAuth2Strategy, InternalOAuthError } from 'passport-oauth';
  * @example
  * passport.use(new TwitchTokenStrategy({
  *   clientID: '123456789',
- *   clientSecret: 'shhh-its-a-secret'
+ *   clientSecret: 'shh-its-a-secret'
  * }), function(req, accessToken, refreshToken, profile, next) {
  *   User.findOrCreate({twitchId: profile.id}, function(error, user) {
  *     next(error, user);
  *   })
  * })
  */
-export default class TwitchTokenStrategy extends OAuth2Strategy {
-  constructor(_options, _verify) {
-    let options = _options || {};
-    let verify = _verify;
+module.exports = class TwitchTokenStrategy extends OAuth2Strategy {
+  constructor (_options, _verify) {
+    const options = _options || {};
+    const verify = _verify;
 
     options.authorizationURL = options.authorizationURL || 'https://api.twitch.tv/kraken/oauth2/authorize';
     options.tokenURL = options.tokenURL || 'https://api.twitch.tv/kraken/oauth2/token';
@@ -42,20 +42,14 @@ export default class TwitchTokenStrategy extends OAuth2Strategy {
 
     this._oauth2.setAuthMethod('Bearer');
     this._oauth2.useAuthorizationHeaderforGET(true);
-    this._oauth2._customHeaders = {'Client-ID': this._oauth2._clientId}
+    this._oauth2._customHeaders = { 'Client-ID': this._oauth2._clientId };
   }
 
-  /**
-   * Authenticate method
-   * @param {Object} req
-   * @param {Object} options
-   * @returns {*}
-   */
-  authenticate(req, options) {
-    let accessToken = (req.body && req.body[this._accessTokenField]) || (req.query && req.query[this._accessTokenField]);
-    let refreshToken = (req.body && req.body[this._refreshTokenField]) || (req.query && req.query[this._refreshTokenField]);
+  authenticate (req, _options) {
+    const accessToken = (req.body && req.body[this._accessTokenField]) || (req.query && req.query[this._accessTokenField]);
+    const refreshToken = (req.body && req.body[this._refreshTokenField]) || (req.query && req.query[this._refreshTokenField]);
 
-    if (!accessToken) return this.fail({message: `You should provide ${this._accessTokenField}`});
+    if (!accessToken) return this.fail({ message: `You should provide ${this._accessTokenField}` });
 
     this._loadUserProfile(accessToken, (error, profile) => {
       if (error) return this.error(error);
@@ -75,16 +69,11 @@ export default class TwitchTokenStrategy extends OAuth2Strategy {
     });
   }
 
-  /**
-   * Parse user profile
-   * @param {String} accessToken Twitch OAuth2 access token
-   * @param {Function} done
-   */
-  userProfile(accessToken, done) {
-    this._oauth2.get(this._profileURL, accessToken, (error, body, res) => {
+  userProfile (accessToken, done) {
+    this._oauth2.get(this._profileURL, accessToken, (error, body, _res) => {
       if (error) {
         try {
-          let errorJSON = JSON.parse(error.data);
+          const errorJSON = JSON.parse(error.data);
           return done(new InternalOAuthError(errorJSON.message, errorJSON.status));
         } catch (_) {
           return done(new InternalOAuthError('Failed to fetch user profile', error));
@@ -92,10 +81,10 @@ export default class TwitchTokenStrategy extends OAuth2Strategy {
       }
 
       try {
-        let json = JSON.parse(body);
-        json['id'] = json._id;
+        const json = JSON.parse(body);
+        json.id = json._id;
 
-        let profile = {
+        const profile = {
           provider: 'twitch',
           id: json.id,
           username: json.name || '',
@@ -104,7 +93,7 @@ export default class TwitchTokenStrategy extends OAuth2Strategy {
             familyName: json.display_name ? json.display_name.split(' ', 2)[0] : '',
             givenName: json.display_name ? json.display_name.split(' ', 2)[1] : ''
           },
-          emails: [{value: json.email}],
+          emails: [{ value: json.email }],
           photos: [],
           _raw: body,
           _json: json

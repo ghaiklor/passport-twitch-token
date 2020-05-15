@@ -1,0 +1,8 @@
+{
+  "spec": "test/unit/**/*.test.js",
+  "reporter": "nyan",
+  "exit": true,
+  "require": [
+    "test/bootstrap.js"
+  ]
+}
